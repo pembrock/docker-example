@@ -6,7 +6,7 @@
 		<h1>Blabla</h1>
 		<ul>
 			<?php
-				$json = file_get_contents('http://product-service');
+				$json = file_get_contents('http://product-service/products');
 				$obj = json_decode($json);
 				
 				$products = $obj->products;

@@ -3,22 +3,23 @@ version: '3'
 services:
     product-service:
         build: ./product
+        restart: always
         volumes:
             - ./product:/usr/src/app
         ports:
             - 5001:80
 
     website:
-        image: php:apache
+        #image: php:apache
+        build: ./website
         volumes:
-            - ./website:/var/www/html
+            - ./website/code:/var/www/html
         ports:
             - 5000:80
         depends_on:
             - product-service
     postgres-db:
         image: postgres:10.4
-        #restart: always
         environment:
             - POSTGRES_PASSWORD=123456
             - POSTGRES_USER=postgres
